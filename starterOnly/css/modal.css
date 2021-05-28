@@ -21,6 +21,7 @@ body {
     font-size: 18px;
     max-width: 1300px;
     margin: 0 auto;
+    padding: 0 50px;
 }
 
 
@@ -112,7 +113,7 @@ main {
 
 .hero-img {
     width: 60%;
-    height: 70vh;
+    /* height: 70vh; */
 }
 .hero-img img {
     width: 100%;
@@ -132,8 +133,9 @@ main {
 }
 
 
+
 .bground {
-    display: flex;
+    display: none;
     position: fixed;
     z-index: 2;
     left: 0;
@@ -144,6 +146,9 @@ main {
     background-color: rgba(26, 39, 156, 0.4);
     align-items: center;
     justify-content: center;
+}
+.bground.show {
+    display: flex;
 }
 .bground .content {
     background-color: var(--primary-color);
@@ -390,12 +395,21 @@ footer {
         overflow: hidden;
     }
 
-    .btn-signup {
-        background-color: var(--secondary-color);
-        padding: 10px 25px;
-        border-radius: 8px;
-        font-size: 1rem;
+
+
+    /*---FORM---------*/
+
+    .bground {
+        height: unset;
+        position: absolute;
+        margin-top: 90px;
+        overflow-y: scroll;
     }
+    .bground .content {
+        border-radius: 0;
+    }
+
+
 
     /*---FOOTER--------*/
 
@@ -407,6 +421,9 @@ footer {
         padding-top: 10px;
         padding-bottom: 20px;
     }
+
+
+
 
 }
 
