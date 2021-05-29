@@ -11,19 +11,12 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = [...document.querySelectorAll(".modal-btn")];
 const close = document.querySelector('.close');
-const formData = document.querySelectorAll(".formData");
 
-// launch modal event
-// modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
-// launch modal form
-// function launchModal() {
-//   modalbg.style.display = "block";
-// }
-
-// function launchModal() {
-//   modalbg.classList.add('show');
-// }
+const form = document.querySelector('#form');
+const firstName = document.querySelector('#first');
+const lastName = document.querySelector('#last');
+const email = document.querySelector('#email');
+const date = document.querySelector('#birthdate');
 
 
 //Launch modal form
@@ -42,12 +35,7 @@ close.addEventListener('click', closeModal);
 
 
 
-const form = document.querySelector('#form');
-const firstName = document.querySelector('#first');
-const lastName = document.querySelector('#last');
-const email = document.querySelector('#email');
-const date = document.querySelector('#birthdate');
-
+//function that shows the error state of an input
 const showError = (input) => {
   const parent = input.parentElement;
   const error = parent.querySelector('.error-message');
@@ -56,6 +44,7 @@ const showError = (input) => {
   error.style.display="block";
 }
 
+//function that shows the success state of an input
 const showSuccess = (input) => {
   const parent = input.parentElement;
   const success = parent.querySelector('.error-message');
@@ -64,6 +53,7 @@ const showSuccess = (input) => {
   success.style.display="none";
 }
 
+// Check the validity of the FIRST name input
 const checkFirstName = () => {
 
   let valid = false;
@@ -78,6 +68,7 @@ const checkFirstName = () => {
   return valid;
 }
 
+// Check the validity of the LAST name input
 const checkLastName = () => {
 
   let valid = false;
@@ -87,23 +78,46 @@ const checkLastName = () => {
     showError(lastName);
   } else {
     showSuccess(lastName);
-    valid = true
+    valid = true;
   }
   return valid;
 }
 
+// Check the validity of the EMAIL input
+const emailValidity = (email) => {
+  const regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return regEx.test(email);
+}
 const checkEmail = () => {
-  if(email.value == "") {
+
+  let valid = false;
+  let emailValue = email.value.trim()
+
+  if(!emailValidity(emailValue)) {
     showError(email)
+  } else {
+    showSuccess(email)
+    valid = true;
   }
+  return valid;
 }
 
+
+// Check the validity of the DATE input
 const checkDate = () => {
+  
+  let valid = false;
+   
   if(date.value == "") {
     showError(date);
+  } else {
+    showSuccess(date);
+    valid = true;
   }
+  return valid;
 }
 
+//Add a listener to the form on submit and checks all inputs are valid
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   let nameValid = checkFirstName();
@@ -112,6 +126,7 @@ form.addEventListener('submit', (e) => {
   let dateValid = checkDate();
 })
 
+// for instant client-side validation
 form.addEventListener('input', (e) => {
   switch (e.target.id) {
     case 'first':
@@ -132,52 +147,3 @@ form.addEventListener('input', (e) => {
 
 
 
-// const formBtn = document.querySelector('.btn-submit');
-// const name = document.reserve.first.value;
-
-// const validate = () => {
-//   if(name == "") {
-//     alert ('do it');
-//     document.reserve.first.focus();
-//     return false;
-//   }
-//   return ( true );
-// }
-
-// const form = document.forms['reserve'];
-// const firstName = form['first'];
-// const lastName = form['last'];
-// const email = form['email'];
-// const date = form['birthdate'];
-
-// form.addEventListener('submit', (e) => {
-//   if(firstName.value == "") {
-//     e.preventDefault()
-//     firstName.querySelector('#first ~ p.error-message').style.display="block";
-//   } else {
-//     firstName.querySelector('#first ~ p.error-message').style.display="none";
-//   }
-
-//   if(lastName.value == "") {
-//     e.preventDefault()
-//     lastName.querySelector('#last ~ p.error-message').style.display="block";
-//   } else {
-//     lastName.querySelector('#last ~ p.error-message').style.display="none";
-//   }
-  
-//   if(email.value == "") {
-//     e.preventDefault()
-//     email.querySelector('#email ~ p.error-message').style.display="block";
-//   } else {
-//     email.querySelector('#email ~ p.error-message').style.display="none";
-//   }
-// })
-
-// const validate = () => {
-//   if(firstName.value == '') {
-//     alert('please add a name');
-//     firstName.focus();
-//     return false;
-//   }
-//   return true;
-// }
