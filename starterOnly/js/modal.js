@@ -22,6 +22,7 @@ const date = document.querySelector('#birthdate');
 const villes = [...document.querySelectorAll('.radio-input')];
 const checkbox = document.querySelector('#checkbox1');
 const checkboxError = document.querySelector('.checkbox-error-message');
+const allInput = [...document.getElementsByTagName('input')]
 
 
 //Launch modal form
@@ -179,6 +180,9 @@ form.addEventListener('submit', (e) => {
   if(formIsValid) {
     successMeassage.classList.add('show');
     form.reset();
+    for ( let input of allInput) {
+      input.classList.remove('valid');
+    }
   }
 })
 
