@@ -11,12 +11,17 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = [...document.querySelectorAll(".modal-btn")];
 const close = document.querySelector('.close');
+const closeBtn = document.querySelector('.close-btn');
+const successMeassage = document.querySelector('.success-message-container');
 
 const form = document.querySelector('#form');
 const firstName = document.querySelector('#first');
 const lastName = document.querySelector('#last');
 const email = document.querySelector('#email');
 const date = document.querySelector('#birthdate');
+const villes = [...document.querySelectorAll('.radio-input')];
+const checkbox = document.querySelector('#checkbox1');
+const checkboxError = document.querySelector('.checkbox-error-message');
 
 
 //Launch modal form
@@ -32,6 +37,10 @@ const closeModal = () => {
   modalbg.classList.remove('show');
 }
 close.addEventListener('click', closeModal);
+closeBtn.addEventListener('click', () => {
+  modalbg.classList.remove('show');
+  successMeassage.classList.remove('show');
+});
 
 
 
@@ -117,6 +126,44 @@ const checkDate = () => {
   return valid;
 }
 
+// Check the validity of the VILLES selection
+const checkVilles = () => {
+  
+  let valid = false;
+
+  const radioError = document.querySelector('.radio-container .error-message');
+
+  for (let i = 0; i < villes.length; i++) {
+
+    if(!villes[i].checked) {
+      radioError.classList.add('invalid');
+    } else {
+      radioError.classList.remove('invalid');
+      valid = true;
+      break;
+    }
+  }
+
+  return valid;
+}
+
+// Check the validity of CONDITIONS selection
+const checkConditions = () => {
+
+  let valid = false;
+
+  if(!checkbox.checked) {
+    checkboxError.classList.add('invalid');
+  } else {
+    checkboxError.classList.remove('invalid');
+    valid = true;
+  }
+
+  return valid
+
+}
+
+
 //Add a listener to the form on submit and checks all inputs are valid
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -124,6 +171,15 @@ form.addEventListener('submit', (e) => {
   let lastValid = checkLastName();
   let emailValid = checkEmail();
   let dateValid = checkDate();
+  let villeValid = checkVilles();
+  let conditionsValid = checkConditions();
+
+  let formIsValid = nameValid && lastValid && emailValid && dateValid && villeValid && conditionsValid;
+
+  if(formIsValid) {
+    successMeassage.classList.add('show');
+    form.reset();
+  }
 })
 
 // for instant client-side validation
@@ -140,6 +196,27 @@ form.addEventListener('input', (e) => {
       break;
     case 'birthdate':
       checkDate();
+      break;
+    case 'location1':
+      checkVilles();
+      break;
+    case 'location2':
+      checkVilles();
+      break;
+    case 'location3':
+      checkVilles();
+      break;
+    case 'location4':
+      checkVilles();
+      break;
+    case 'location5':
+      checkVilles();
+      break;
+    case 'location6':
+      checkVilles();
+      break;
+    case 'checkbox1':
+      checkConditions();
       break;
   }
 })
