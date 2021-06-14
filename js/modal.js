@@ -50,7 +50,7 @@ const showError = (input) => {
   const parent = input.parentElement;
   const error = parent.querySelector('.error-message');
   input.classList.add('invalid');
-  input.classList.remove('valid');
+  // input.classList.remove('valid');
   error.style.display="block";
 }
 
@@ -59,7 +59,7 @@ const showSuccess = (input) => {
   const parent = input.parentElement;
   const success = parent.querySelector('.error-message');
   input.classList.remove('invalid');
-  input.classList.add('valid');
+  // input.classList.add('valid');
   success.style.display="none";
 }
 

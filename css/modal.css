@@ -161,6 +161,7 @@ main {
     border-radius: 8px;
     color: white;
     max-width: 540px;
+    height: 100%;
     overflow-y: scroll;
     position: relative;
     box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.25);
@@ -248,9 +249,9 @@ border: 2px solid #e54858;
     outline: none;
 }
 
-.text-control.valid {
+/* .text-control.valid {
     border: 2px solid var(--tertiary-color);
-}
+} */
 
 .text-control.invalid {
     border: 2px solid var(--secondary-color);
