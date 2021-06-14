@@ -6,13 +6,21 @@ function editNav() {
     x.className = "topnav";
   }
 }
+// CHANGE THIS
+
+
+
+
 
 // DOM Elements
+const navBtn = document.querySelector('.nav-button');
+const navMenu = document.querySelector('.main-navbar');
+
 const modalbg = document.querySelector(".bground");
 const modalBtn = [...document.querySelectorAll(".modal-btn")];
 const close = document.querySelector('.close');
 const closeBtn = document.querySelector('.close-btn');
-const successMeassage = document.querySelector('.success-message-container');
+const successMessage = document.querySelector('.success-message-container');
 
 const form = document.querySelector('#form');
 const firstName = document.querySelector('#first');
@@ -25,6 +33,12 @@ const checkboxError = document.querySelector('.checkbox-error-message');
 const allInput = [...document.getElementsByTagName('input')]
 
 
+//Open Nav Menu
+navBtn.addEventListener('click', () => {
+  navMenu.classList.toggle('mobile');
+  navBtn.classList.toggle('opened');
+})
+
 //Launch modal form
 const launchModal = () => {
   modalbg.classList.add('show');
@@ -33,6 +47,10 @@ for ( let btn of modalBtn ) {
   btn.addEventListener('click', launchModal);
 }
 
+// for (let i=0; i < modalBtn.length; i++) {
+//   modalBtn[i].addEventListener('click', launchModal);
+// }
+
 //Close Modal
 const closeModal = () => {
   modalbg.classList.remove('show');
@@ -40,7 +58,7 @@ const closeModal = () => {
 close.addEventListener('click', closeModal);
 closeBtn.addEventListener('click', () => {
   modalbg.classList.remove('show');
-  successMeassage.classList.remove('show');
+  successMessage.classList.remove('show');
 });
 
 
@@ -50,7 +68,6 @@ const showError = (input) => {
   const parent = input.parentElement;
   const error = parent.querySelector('.error-message');
   input.classList.add('invalid');
-  // input.classList.remove('valid');
   error.style.display="block";
 }
 
@@ -59,7 +76,6 @@ const showSuccess = (input) => {
   const parent = input.parentElement;
   const success = parent.querySelector('.error-message');
   input.classList.remove('invalid');
-  // input.classList.add('valid');
   success.style.display="none";
 }
 
@@ -69,7 +85,7 @@ const checkFirstName = () => {
   let valid = false;
   const min = 2;
 
-  if(firstName.value < min) {
+  if(firstName.value.length < min) {
     showError(firstName);
   } else {
     showSuccess(firstName);
@@ -84,7 +100,7 @@ const checkLastName = () => {
   let valid = false;
   const min = 2;
 
-  if(lastName.value < min) {
+  if(lastName.value.length < min) {
     showError(lastName);
   } else {
     showSuccess(lastName);
@@ -101,7 +117,7 @@ const emailValidity = (email) => {
 const checkEmail = () => {
 
   let valid = false;
-  let emailValue = email.value.trim()
+  let emailValue = email.value.trim();
 
   if(!emailValidity(emailValue)) {
     showError(email)
@@ -118,7 +134,7 @@ const checkDate = () => {
   
   let valid = false;
    
-  if(date.value == "") {
+  if(date.value === "") {
     showError(date);
   } else {
     showSuccess(date);
@@ -136,7 +152,7 @@ const checkVilles = () => {
 
   for (let i = 0; i < villes.length; i++) {
 
-    if(!villes[i].checked) {
+    if(villes[i].checked === false) {
       radioError.classList.add('invalid');
     } else {
       radioError.classList.remove('invalid');
@@ -153,7 +169,7 @@ const checkConditions = () => {
 
   let valid = false;
 
-  if(!checkbox.checked) {
+  if(checkbox.checked === false) {
     checkboxError.classList.add('invalid');
   } else {
     checkboxError.classList.remove('invalid');
@@ -178,11 +194,8 @@ form.addEventListener('submit', (e) => {
   let formIsValid = nameValid && lastValid && emailValid && dateValid && villeValid && conditionsValid;
 
   if(formIsValid) {
-    successMeassage.classList.add('show');
+    successMessage.classList.add('show');
     form.reset();
-    for ( let input of allInput) {
-      input.classList.remove('valid');
-    }
   }
 })
 
