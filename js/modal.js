@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const villes = [...document.querySelectorAll('.radio-input')];
   const checkbox = document.querySelector('#checkbox1');
   const checkboxError = document.querySelector('.checkbox-error-message');
-  const allInput = [...document.getElementsByTagName('input')]
+
 
 
   //Open Nav Menu
@@ -28,18 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
     navBtn.classList.toggle('opened');
   })
 
+
+
   //Launch modal form
   const launchModal = () => {
     modalbg.classList.add('show');
   }
-
-  // for ( let btn of modalBtn ) {
-  //   btn.addEventListener('click', launchModal);
-  // }
-
   for (let i=0; i < modalBtn.length; i++) {
     modalBtn[i].addEventListener('click', launchModal);
   }
+
+
 
   //Close Modal
   const closeModal = () => {
@@ -61,6 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
     error.style.display="block";
   }
 
+
+
   //function that shows the success state of an input
   const showSuccess = (input) => {
     const parent = input.parentElement;
@@ -68,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     input.classList.remove('invalid');
     success.style.display="none";
   }
+
 
 
   // Check the validity of the FIRST name input
@@ -102,6 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return valid;
   }
 
+
+
+
   // Check the validity of the EMAIL input
   const emailValidity = (email) => {
     const regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -122,6 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+
+
   // Check the validity of the DATE input
   const checkDate = () => {
     
@@ -135,6 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     return valid;
   }
+
+
 
   // Check the validity of the QUANTITY input
   const checkQuantity = () => {
@@ -151,6 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return valid;
 
   }
+
+
 
   // Check the validity of the VILLES selection
   const checkVilles = () => {
@@ -173,6 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return valid;
   }
 
+
+
   // Check the validity of CONDITIONS selection
   const checkConditions = () => {
 
@@ -188,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return valid
 
   }
+
 
 
   //Add a listener to the form on submit and checks all inputs are valid
@@ -208,6 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
       form.reset();
     }
   })
+
+
 
   // for instant client-side validation
 
