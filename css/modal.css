@@ -108,7 +108,7 @@ main {
     font-weight: normal;
     white-space: nowrap;
 }
-.hero-text, .success-message-container p {
+.hero-text, .success-message-container h2 {
     width: 100%;
     font-weight: normal;
     padding: 20px 0;
@@ -116,7 +116,7 @@ main {
     line-height: 2.3rem;
 }
 
-.success-message-container p {
+.success-message-container h2 {
     text-align: center;
 }
 
