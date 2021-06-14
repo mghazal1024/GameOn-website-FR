@@ -301,6 +301,9 @@ form ul.radio-container li {
     position: relative;
     cursor: pointer;
 }
+form ul.radio-container li:last-child {
+    width: 100%;
+}
 form ul.radio-container li label,
 form ul.checkbox-container li label {
     margin-left: 35px;
