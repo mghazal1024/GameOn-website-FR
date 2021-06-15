@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
   //Open Nav Menu
   navBtn.addEventListener('click', () => {
     navMenu.classList.toggle('mobile');
@@ -49,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
     modalbg.classList.remove('show');
     successMessage.classList.remove('show');
   });
-
 
 
   //function that shows the error state of an input
