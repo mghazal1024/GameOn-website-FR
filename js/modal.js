@@ -71,47 +71,97 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+  // Class
+  class Check {
+    constructor(valueToCheck, compare, valid){
+      this.valueToCheck = valueToCheck;
+      this.compare = compare;
+      this.valid = valid
+    }
+
+
+    checkStringLength() {
+      this.valid = false
+      if(this.valueToCheck.value.length < this.compare) {
+        showError(this.valueToCheck);
+      } else {
+        showSuccess(this.valueToCheck);
+        this.valid = true;
+      }
+      return this.valid;
+    }
+
+    checkNumber() {
+      this.valid = false;
+      if(this.valueToCheck.value < this.compare) {
+        showError(this.valueToCheck);
+      } else {
+        showSuccess(this.valueToCheck);
+        this.valid = true;
+      }
+      return this.valid;
+    }
+
+    checkEmptyString() {
+      this.valid = false;
+      if(this.valueToCheck.value === "") {
+        showError(this.valueToCheck);
+      } else {
+        showSuccess(this.valueToCheck);
+        this.valid = true;
+      }
+      return this.valid;
+    }
+
+  }
+
+const checkFirstName = new Check (firstName, 2);
+const checkLastName = new Check (lastName, 2);
+const checkQuantity = new Check (quantity, 1);
+const checkDate = new Check (date);
+
 
   // Check the validity of the FIRST name input
-  const checkFirstName = () => {
+  // const checkFirstName = () => {
 
-    let valid = false;
-    const min = 2;
+  //   let valid = false;
+  //   const min = 2;
 
-    if(firstName.value.length < min) {
-      showError(firstName);
-    } else {
-      showSuccess(firstName);
-      valid = true;
-    }
-    return valid;
-  }
+  //   if(firstName.value.length < min) {
+  //     showError(firstName);
+  //   } else {
+  //     showSuccess(firstName);
+  //     valid = true;
+  //   }
+  //   return valid;
+  // }
 
 
 
   // Check the validity of the LAST name input
-  const checkLastName = () => {
+  // const checkLastName = () => {
 
-    let valid = false;
-    const min = 2;
+  //   let valid = false;
+  //   const min = 2;
 
-    if(lastName.value.length < min) {
-      showError(lastName);
-    } else {
-      showSuccess(lastName);
-      valid = true;
-    }
-    return valid;
-  }
+  //   if(lastName.value.length < min) {
+  //     showError(lastName);
+  //   } else {
+  //     showSuccess(lastName);
+  //     valid = true;
+  //   }
+  //   return valid;
+  // }
 
 
-
+  
 
   // Check the validity of the EMAIL input
   const emailValidity = (email) => {
     const regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regEx.test(email);
   }
+
   const checkEmail = () => {
 
     let valid = false;
@@ -130,36 +180,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // Check the validity of the DATE input
-  const checkDate = () => {
+  // const checkDate = () => {
     
-    let valid = false;
+  //   let valid = false;
     
-    if(date.value === "") {
-      showError(date);
-    } else {
-      showSuccess(date);
-      valid = true;
-    }
-    return valid;
-  }
+  //   if(date.value === "") {
+  //     showError(date);
+  //   } else {
+  //     showSuccess(date);
+  //     valid = true;
+  //   }
+  //   return valid;
+  // }
 
 
 
   // Check the validity of the QUANTITY input
-  const checkQuantity = () => {
+  // const checkQuantity = () => {
 
-    let valid = false;
-    let min = 1;
+  //   let valid = false;
+  //   let min = 1;
 
-    if(quantity.value < min ){
-      showError(quantity);
-      } else {
-        showSuccess(quantity);
-        valid = true;
-      }
-    return valid;
+  //   if(quantity.value < min ){
+  //     showError(quantity);
+  //     } else {
+  //       showSuccess(quantity);
+  //       valid = true;
+  //     }
+  //   return valid;
 
-  }
+  // }
 
 
 
@@ -207,11 +257,15 @@ document.addEventListener('DOMContentLoaded', () => {
   //Add a listener to the form on submit and checks all inputs are valid
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    let nameValid = checkFirstName();
-    let lastValid = checkLastName();
+    // let nameValid = checkFirstName();
+    let nameValid = checkFirstName.checkStringLength();
+    // let lastValid = checkLastName();
+    let lastValid = checkLastName.checkStringLength();
     let emailValid = checkEmail();
-    let dateValid = checkDate();
-    let quantityValid = checkQuantity();
+    // let dateValid = checkDate();
+    let dateValid = checkDate.checkEmptyString();
+    // let quantityValid = checkQuantity();
+    let quantityValid = checkQuantity.checkNumber();
     let villeValid = checkVilles();
     let conditionsValid = checkConditions();
 
@@ -230,19 +284,23 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('input', (e) => {
     switch (e.target.id) {
       case 'first':
-        checkFirstName();
+        // checkFirstName();
+        checkFirstName.checkStringLength();
         break;
       case 'last':
-        checkLastName();
+        // checkLastName();
+        checkLastName.checkStringLength();
         break;
       case 'email':
         checkEmail();
         break;
       case 'birthdate':
-        checkDate();
+        // checkDate();
+        checkDate.checkEmptyString();
         break;
       case 'quantity':
-        checkQuantity();
+        // checkQuantity();
+        checkQuantity.checkNumber();
         break;
       case 'location1':
         checkVilles();
