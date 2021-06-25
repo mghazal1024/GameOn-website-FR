@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
+
   //function that shows the error state of an input
   const showError = (input) => {
     const parent = input.parentElement;
@@ -59,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     input.classList.add('invalid');
     error.style.display="block";
   }
-
 
 
   //function that shows the success state of an input
@@ -71,41 +71,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-
-  // Check the validity of the FIRST name input
-  const checkFirstName = () => {
+  //Check validity of string inputs such as First and last name
+  const checkString = (input, minLength) => {
 
     let valid = false;
-    const min = 2;
+    const min = minLength;
 
-    if(firstName.value.length < min) {
-      showError(firstName);
+    if(input.value.length < min) {
+      showError(input);
     } else {
-      showSuccess(firstName);
+      showSuccess(input);
       valid = true;
     }
     return valid;
   }
-
-
-
-  // Check the validity of the LAST name input
-  const checkLastName = () => {
-
-    let valid = false;
-    const min = 2;
-
-    if(lastName.value.length < min) {
-      showError(lastName);
-    } else {
-      showSuccess(lastName);
-      valid = true;
-    }
-    return valid;
-  }
-
-
-
 
   // Check the validity of the EMAIL input
   const emailValidity = (email) => {
@@ -127,8 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-
-
   // Check the validity of the DATE input
   const checkDate = () => {
     
@@ -142,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     return valid;
   }
-
 
 
   // Check the validity of the QUANTITY input
@@ -160,7 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return valid;
 
   }
-
 
 
   // Check the validity of the VILLES selection
@@ -207,8 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
   //Add a listener to the form on submit and checks all inputs are valid
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    let nameValid = checkFirstName();
-    let lastValid = checkLastName();
+    let nameValid = checkString(firstName, 2);
+    let lastValid = checkString(lastName, 2);
     let emailValid = checkEmail();
     let dateValid = checkDate();
     let quantityValid = checkQuantity();
