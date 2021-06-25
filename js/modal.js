@@ -205,10 +205,10 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('input', (e) => {
     switch (e.target.id) {
       case 'first':
-        checkFirstName();
+        checkString(firstName, 2);
         break;
       case 'last':
-        checkLastName();
+        checkString(lastName, 2);
         break;
       case 'email':
         checkEmail();
