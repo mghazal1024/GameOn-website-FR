@@ -149,6 +149,7 @@ main {
     background-color: #E5E5E5;
     align-items: center;
     justify-content: center;
+    padding: 40px;
 }
 .bground.show {
     display: flex;
@@ -196,7 +197,7 @@ main {
   }
 
 .modal-body form {
-    padding: 40px 0;
+    padding: 20px 0;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -554,9 +555,14 @@ footer {
         position: absolute;
         margin-top: 90px;
         overflow-y: scroll;
+        padding: 0;
     }
     .bground .content {
         border-radius: 0;
+    }
+
+    .modal-body form {
+        padding: 0;
     }
 
 
