@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const navMenu = document.querySelector('.main-navbar');
 
   const modalbg = document.querySelector(".bground");
-  const modalBtn = [...document.querySelectorAll(".modal-btn")];
+  const modalBtn = document.querySelectorAll(".modal-btn");
   const close = document.querySelector('.close');
   const closeBtn = document.querySelector('.close-btn');
   const successMessage = document.querySelector('.success-message-container');
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const email = document.querySelector('#email');
   const date = document.querySelector('#birthdate');
   const quantity = document.querySelector('#quantity');
-  const villes = [...document.querySelectorAll('.radio-input')];
+  const villes = document.querySelectorAll('.radio-input');
   const checkbox = document.querySelector('#checkbox1');
   const checkboxError = document.querySelector('.checkbox-error-message');
 
